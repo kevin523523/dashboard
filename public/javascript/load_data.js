@@ -79,6 +79,40 @@ let cargarOpenMeteo = () => {
     let chart1  = new Chart(plotRef, config);
   
       })
+        fetch(URL2)
+    .then(responseText => responseText.json())
+    .then(responseJSON => {
+
+      console.log(responseJSON);
+      //Respuesta en formato JSON
+
+      //Referencia al elemento con el identificador plot
+      let plotRef2 = document.getElementById('plot2');
+
+      //Etiquetas del gráfico
+      let labels2 = responseJSON.hourly.time;
+
+      //Etiquetas de los datos
+      let data2 = responseJSON.hourly.precipitation_probability;
+
+      //Objeto de configuración del gráfico
+      let config2 = {
+        type: 'line',
+        data: {
+          labels: labels2,
+          datasets: [
+            {
+              label: 'Temperature [2m]',
+              data: data2,
+            }
+          ]
+        }
+      };
+
+      //Objeto con la instanciación del gráfico
+      let chart2 = new Chart(plotRef2, config2);
+
+    })
       .catch(console.error);
   
   }
