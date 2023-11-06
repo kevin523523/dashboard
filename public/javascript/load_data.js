@@ -174,20 +174,7 @@ let selectListener = async (event) => {
   let cityStorage = localStorage.getItem(selectedCity);
 
   if (cityStorage == null) {
-  
-      try {
-        // Guarde la entrada de almacenamiento local
-        await localStorage.setItem(selectedCity, responseText)
-
-      } catch (error) {
-      }
-
-  } else {
-      // Procese un valor previo
-      parseXML(cityStorage)
-  }
-
-  try {
+    try {
 
       //API key
       let APIkey = '9b6a1dface821b96acf2dca1f98987ce'
@@ -197,10 +184,18 @@ let selectListener = async (event) => {
       let responseText = await response.text()
       
       await parseXML(responseText)
+      // Guarde la entrada de almacenamiento local
+      await localStorage.setItem(selectedCity, responseText)
 
   } catch (error) {
       console.log(error)
   }
+  } else {
+      // Procese un valor previo
+      parseXML(cityStorage)
+  }
+
+  
 
 }
 
