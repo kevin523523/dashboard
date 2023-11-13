@@ -206,4 +206,20 @@ let loadForecastByCity = () => {
 
 }
 
+let loadExternalTable = async () => {
+  try {
+    const response = await fetch('https://www.gestionderiesgos.gob.ec/monitoreo-de-inundaciones/');
+    const text = await response.text();
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(text, 'text/html');
+    const table = xml.querySelector('#postcontent table');
+    const monitoreo = document.getElementById('monitoreo');
+    monitoreo.innerHTML = table.outerHTML;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+loadExternalTable();
+
 loadForecastByCity()
