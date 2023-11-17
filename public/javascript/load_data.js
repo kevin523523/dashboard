@@ -105,12 +105,12 @@ let cargarOpenMeteo2 = () => {
 
             //Objeto de configuración del gráfico
             let config = {
-                type: 'line',
+                type: 'bar',
                 data: {
                     labels: labels,
                     datasets: [
                         {
-                            label: 'Temperature [2m]',
+                            label: 'Precipitation Probability',
                             data: data,
                         }
                     ]
