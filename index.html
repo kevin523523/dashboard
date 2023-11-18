@@ -2,10 +2,15 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="description" content="Dashboard del clima" />
+    <meta name="author" content="Kevin" />
     <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
 
     <!-- Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
@@ -13,187 +18,274 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
     <!-- MDB -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.css" rel="stylesheet" />
-
 </head>
 
-<body>
-
+<body class="sb-nav-fixed">
     <header>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-mdb-toggle="collapse"
-                    data-mdb-target="#navbarExample01" aria-controls="navbarExample01" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <i class="fas fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarExample01">
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <!-- Navbar Brand-->
+            <a class="navbar-brand ps-3" href="index.html">Dashboard</a>
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><svg class="svg-inline--fa fa-bars" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="bars" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path></svg></button>
+            <!-- Navbar-->
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <li class="nav-item dropdown">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="#indicadores">Indicadores</a>
+                            
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#graficos">Gráficos</a>
+                            
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#datos">Datos</a>
+                            
                         </li>
-
                     </ul>
-                </div>
-            </div>
+                </li>
+            </ul>
         </nav>
-        <!-- Navbar -->
     </header>
 
-    <!-- Indicadores -->
-    <section class="p-4 text-right bg-light">
-        <h4 id="indicadores" class="mb-3">
-            Indicadores
-        </h4>
-        <h6 class="mb-3">YYYY-MM-DD</h6>
-        <div class="container">
-            <div class="row row-cols-1 row-cols-md-3 g-3 mt-2">
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Precipitación</h5>
-                            <p class="card-text">
-                            <ul class="list-group list-group-light">
-                                <li id="precipitacionMinValue" class="list-group-item">Min 0.0 [mm]</li>
-                                <li id="precipitacionPromValue" class="list-group-item">Prom 0.0 [mm]</li>
-                                <li id="precipitacionMaxValue" class="list-group-item">Max 0.0 [mm]</li>
-                            </ul>
-                            </p>
-                        </div>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <a class="nav-link" href="index.html">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            Indicadores
+                        </a>
+                        <a class="nav-link" href="#grafico">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-chart-area"></i>
+                            </div>
+                            Gráficos
+                        </a>
+                        <a class="nav-link" href="#monitoreo">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-table me-1"></i>
+                            </div>
+                            Datos
+                        </a>
+                        <a class="nav-link" href="#monitoreo">
+                            <div class="sb-nav-link-icon">
+                                <i class="fas fa-table me-1"></i>
+                            </div>
+                            Mapa de Monitoreo
+                        </a>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Uv</h5>
-                            <p class="card-text">
-                            <ul class="list-group list-group-light">
-                                <li id="uvMinValue" class="list-group-item">Min 0.0 [--]</li>
-                                <li id="uvPromValue" class="list-group-item">Prom 0.0 [--]</li>
-                                <li id="uvMaxValue" class="list-group-item">Max 0.0 [--]</li>
-                            </ul>
-                            </p>
-                        </div>
-                    </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as:</div>
+                    Kevin
                 </div>
-                <div class="col">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Temperatura</h5>
-                            <p class="card-text">
-                            <ul class="list-group list-group-light">
-                                <li id="temperaturaMinValue" class="list-group-item">Min 0.0 [°C]</li>
-                                <li id="temperaturaPromValue" class="list-group-item">Prom 0.0 [°C]</li>
-                                <li id="temperaturaMaxValue" class="list-group-item">Max 0.0 [°C]</li>
-                            </ul>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            </nav>
         </div>
-    </section>
-    <!-- Indicadores -->
-    <!-- Gráficos -->
-    <section class="p-4 text-right bg-light">
-        <h4 id="graficos" class="mb-3">
-            Gráficos
-        </h4>
-        <div class="container">
-            <div class="row d-flex justify-content-center row-cols-1 row-cols-md-1 g-4 mt-2">
-                <div class="col">
-                    <canvas id="plot1"></canvas>
+        <div id="layoutSidenav_content">
+            <main>
+                <!-- Indicadores -->
+
+                <section class="p-4 text-right bg-light">
+                    <h4 id="indicadores" class="mb-3">Indicadores</h4>
+                    <h6 class="mb-3">YYYY-MM-DD</h6>
+                    <div class="container">
+                        <div class="row row-cols-1 row-cols-md-3 g-3 mt-2">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Precipitación</h5>
+                                        <p class="card-text"></p>
+                                        <ul class="list-group list-group-light">
+                                            <li id="precipitacionMinValue" class="list-group-item">
+                                                Min 0.0 [mm]
+                                            </li>
+                                            <li id="precipitacionPromValue" class="list-group-item">
+                                                Prom 0.0 [mm]
+                                            </li>
+                                            <li id="precipitacionMaxValue" class="list-group-item">
+                                                Max 0.0 [mm]
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Uv</h5>
+                                        <p class="card-text"></p>
+                                        <ul class="list-group list-group-light">
+                                            <li id="uvMinValue" class="list-group-item">
+                                                Min 0.0 [--]
+                                            </li>
+                                            <li id="uvPromValue" class="list-group-item">
+                                                Prom 0.0 [--]
+                                            </li>
+                                            <li id="uvMaxValue" class="list-group-item">
+                                                Max 0.0 [--]
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Temperatura</h5>
+                                        <p class="card-text"></p>
+                                        <ul class="list-group list-group-light">
+                                            <li id="temperaturaMinValue" class="list-group-item">
+                                                Min 0.0 [°C]
+                                            </li>
+                                            <li id="temperaturaPromValue" class="list-group-item">
+                                                Prom 0.0 [°C]
+                                            </li>
+                                            <li id="temperaturaMaxValue" class="list-group-item">
+                                                Max 0.0 [°C]
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Indicadores -->
+
+                
+                <div class="container-fluid px-4">
+                    <h4  id = "grafico" class="mb-3">Gráficos</h4>
+                    <!-- Graficos -->
+                    <div  class="row">
+                        
+                        <div class="col-xl-6">
+                            <div class="card mb-4">
+                                <div class="container">
+                                    <div class="col">
+                                        <canvas id="plot1"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="card mb-4">
+                                <div class="container">
+                                    <div class="col">
+                                        <canvas id="plot2"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Graficos -->
+
+                    <!-- TABLA DE DATOS -->
+                    <h4 id="indicadores" class="mb-3">Datos</h4>
+                    <div class="card-body">
+                        <!-- Datos -->
+                        <div class="container">
+                            <div class="row justify-content-start row-cols-6 row-cols-md-6 g-3 mt-2">
+                                <div class="col">
+                                    <select class="form-select form-select-lg mb-3" aria-label="Default select example">
+                                        <option selected>Ciudades</option>
+                                        <option value="Machala">Machala</option>
+                                        <option value="Guayaquil">Guayaquil</option>
+                                        <option value="Quito">Quito</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row row-cols-1 row-cols-md-1 g-3 mt-2">
+                                <div class="col">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">
+                                                Pronóstico del tiempo para 5 días con datos cada 3
+                                                horas por ciudad
+                                            </h5>
+                                            <table id="forecast" class="table align-middle mb-0 bg-white">
+                                                <thead class="bg-light">
+                                                    <tr>
+                                                        <th>Hora</th>
+                                                        <th>Humedad [%]</th>
+                                                        <th>Velocidad del viento [m/s]</th>
+                                                        <th>Precipitación [--]</th>
+                                                        <th>Presión [hPa]</th>
+                                                        <th>Nubosidad [%]</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="forecastbody"></tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Datos -->
+                    </div><br>
+                
+
+                    <div class="card-header">
+                        <i class="fas fa-table me-1"></i>
+                        Mapa de monitoreo
+                    </div>
+                    <div class="card-body">
+                        <!-- Tabla de mareas -->
+                        <section class="p-4 text-right bg-light">
+                            <h4 class="mb-3">
+                                Mapa de monitoreo de amenaza de inundaciones bajo pronóstico
+                                de precipitaciones
+                            </h4>
+                            <div class="container">
+                                <div class="row row-cols-1 row-cols-md-1 g-3 mt-2">
+                                    <div class="col">
+                                        <div class="card">
+                                            <div id="monitoreo" class="card-body"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <!-- Tabla de mareas -->
+                    </div>
+
                 </div>
-                <div class="col">
-                    <canvas id="plot2"></canvas>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Gráficos -->
-    <!-- Datos -->
-    <section class="p-4 text-right bg-light">
-        <h4 id="datos" class="mb-3">
-            Datos
-        </h4>
-        <div class="container">
-
-            <div class="row justify-content-end row-cols-6 row-cols-md-6 g-3 mt-2">
-
-                <div class="col">
-                    <select class="form-select form-select-lg mb-3" aria-label="Default select example">
-                        <option selected>Ciudades</option>
-                        <option value="Machala">Machala</option>
-                        <option value="Guayaquil">Guayaquil</option>
-                        <option value="Quito">Quito</option>
-                    </select>
-                </div>
-
-            </div>
-            <div class="row row-cols-1 row-cols-md-1 g-3 mt-2">
-                <div class="col">
-
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Pronóstico del tiempo
-                                para 5 días con datos cada 3 horas por
-                                ciudad</h5>
-                            <table id="forecast" class="table align-middle mb-0 bg-white">
-                                <thead class="bg-light">
-                                    <tr>
-                                        <th>Hora</th>
-                                        <th>Humedad [%]</th>
-                                        <th>Velocidad del viento [m/s]</th>
-                                        <th>Precipitación [--]</th>
-                                        <th>Presión [hPa]</th>
-                                        <th>Nubosidad [%]</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="forecastbody">
-
-                                </tbody>
-                            </table>
+            </main>
+            <footer class="py-4 bg-light mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; Your Website 2023</div>
+                        <div>
+                            <a href="#">Privacy Policy</a>
+                            &middot;
+                            <a href="#">Terms &amp; Conditions</a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </footer>
         </div>
-    </section>
-    <!-- Datos -->
-    <!-- Tabla de mareas -->
-    <section class="p-4 text-right bg-light">
-        <h4 class="mb-3">
-            Mapa de monitoreo de amenaza de inundaciones bajo pronóstico de precipitaciones
-        </h4>
-        <div class="container">
-            <div class="row row-cols-1 row-cols-md-1 g-3 mt-2">
-                <div class="col">
-                    <div class="card">
-                        <div id="monitoreo" class="card-body">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
 
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Tabla de mareas -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+        crossorigin="anonymous"></script>
+
     <!-- MDB -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script>
 
     <!-- Static data -->
-    <script type="module" src="public/javascript/static_data.js"></script>
+    <script type="module" src="js/static_data.js"></script>
     <!-- Load data -->
-    <script type="module" src="public/javascript/load_data.js"></script>
+    <script type="module" src="js/load_data.js"></script>
+
+    <script type="module" src="js/script.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-
 </body>
 
 </html>
